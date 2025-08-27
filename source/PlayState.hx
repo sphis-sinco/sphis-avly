@@ -3,7 +3,6 @@ package;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.util.FlxColor;
 
 class PlayState extends FlxState
 {
@@ -16,7 +15,7 @@ class PlayState extends FlxState
 		super.create();
 
 		player = new FlxSprite();
-		player.makeGraphic(48, 48, FlxColor.fromString('0xff0000'));
+		player.makeGraphic(48, 48, Color.fstr('0xff0000'));
 		player.screenCenter();
 		add(player);
 
