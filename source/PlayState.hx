@@ -6,7 +6,6 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
-import modding.PolymodHandler;
 
 class PlayState extends FlxState
 {
@@ -58,11 +57,6 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
-
-		if (FlxG.keys.justReleased.F5)
-		{
-			PolymodHandler.forceReloadAssets();
-		}
 
 		player_last_dir = player_dir;
 		player_dir = 0;
