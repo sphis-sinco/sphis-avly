@@ -7,14 +7,12 @@ import thx.semver.VersionRule;
 
 class PolymodHandler
 {
-	static final API_VERSION_RULE:VersionRule = '';
 	static final MOD_FOLDER:String = 'mods';
 
 	public static function getAllMods():Array<ModMetadata>
 	{
 		var modMeta = Polymod.scan({
-			modRoot: MOD_FOLDER,
-			apiVersionRule: API_VERSION_RULE
+			modRoot: MOD_FOLDER
 		});
 
 		trace('[POLYMOD HANDLER] Found ${modMeta.length} mods');
@@ -69,7 +67,6 @@ class PolymodHandler
 		var loadedModList:Array<ModMetadata> = Polymod.init({
 			modRoot: MOD_FOLDER,
 			dirs: i,
-			apiVersionRule: API_VERSION_RULE,
 			framework: OPENFL,
 
 			ignoredFiles: ignoreList,
