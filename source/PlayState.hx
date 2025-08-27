@@ -13,6 +13,7 @@ class PlayState extends FlxState
 	override public function create()
 	{
 		super.create();
+
 		player = new FlxSprite().makeGraphic(48, 48, 0xff0000);
 		add(player);
 
