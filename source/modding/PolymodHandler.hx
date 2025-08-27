@@ -1,6 +1,8 @@
 package modding;
 
+import modding.modules.ModuleHandler;
 import polymod.Polymod;
+import polymod.backends.PolymodAssets.PolymodAssetType;
 import polymod.format.ParseRules;
 import sys.FileSystem;
 
@@ -142,5 +144,20 @@ class PolymodHandler
 			default:
 				trace('[POLYMOD HANDLER] ${error.message}');
 		}
+	}
+
+	public static function forceReloadAssets():Void
+	{
+		// Forcibly clear scripts so that scripts can be edited.
+		ModuleHandler.clearModuleCache();
+		Polymod.clearScripts();
+
+		// Forcibly reload Polymod so it finds any new files.
+		// TODO: Replace this with loadEnabledMods().
+		loadAllMods();
+
+		Polymod.registerAllScriptClasses();
+
+		ModuleHandler.loadModuleCache();
 	}
 }
