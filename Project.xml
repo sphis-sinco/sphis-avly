@@ -48,19 +48,14 @@
 	<haxelib name="polymod" />
 
 	<section if="polymod">
-		<!-- Turns on additional debug logging. -->
+		<haxelib name="hscript" />
+
 		<haxedef name="POLYMOD_DEBUG" value="true" if="debug" />
-		<!-- Which asset library to use for scripts. -->
 		<haxedef name="POLYMOD_SCRIPT_LIBRARY" value="scripts" />
-		<!-- The base path from which scripts should be accessed. -->
 		<haxedef name="POLYMOD_ROOT_PATH" value="scripts/" />
-		<!-- Determines the subdirectory of the mod folder used for file appending. -->
 		<haxedef name="POLYMOD_APPEND_FOLDER" value="_append" />
-		<!-- Determines the subdirectory of the mod folder used for file merges. -->
 		<haxedef name="POLYMOD_MERGE_FOLDER" value="_merge" />
-		<!-- Determines the file in the mod folder used for metadata. -->
 		<haxedef name="POLYMOD_MOD_METADATA_FILE" value="_polymod_meta.json" />
-		<!-- Determines the file in the mod folder used for the icon. -->
 		<haxedef name="POLYMOD_MOD_ICON_FILE" value="_polymod_icon.png" />
 	</section>
 
