@@ -2,7 +2,9 @@ package;
 
 import flixel.FlxG;
 import flixel.input.keyboard.FlxKey;
+import haxe.Json;
 import haxe.exceptions.NotImplementedException;
+import lime.utils.Assets;
 
 class Controls
 {
@@ -49,6 +51,23 @@ class ControlsSave
 
 	public function load(path:Null<String> = null)
 	{
-		save(path);
+		trace('[CONTROLS SAVE] Loading $path controls preference file');
+
+		var saveFile:Dynamic;
+
+		try
+		{
+			saveFile = Json.parse(Assets.getText(path));
+		}
+		catch (e)
+		{
+			saveFile = null;
+			trace('[CONTROLS SAVE] LOADING ERROR: ${e.message}');
+		}
+
+		if (saveFile != null)
+		{
+			save(path);
+		}
 	}
 }
