@@ -12,12 +12,13 @@ class Controls
 		// game_
 		'game_up' => [UP, W],
 		'game_down' => [DOWN, S],
-		'game_pause' => [ENTER, ESCAPE],
+		'game_pause' => [ESCAPE],
 		// ui_
 		'ui_up' => [UP, W],
 		'ui_left' => [LEFT, A],
 		'ui_down' => [DOWN, S],
-		'ui_right' => [RIGHT, D]
+		'ui_right' => [RIGHT, D],
+		'ui_accept' => [ENTER]
 	];
 
 	public static var save:ControlsSave;
@@ -60,6 +61,7 @@ class ControlsSave
 		var ui_left:Array<String> = [];
 		var ui_down:Array<String> = [];
 		var ui_right:Array<String> = [];
+		var ui_accept:Array<String> = [];
 
 		for (key in Controls.controls.get('game_up'))
 			game_up.push(key.toString());
@@ -76,6 +78,8 @@ class ControlsSave
 			ui_down.push(key.toString());
 		for (key in Controls.controls.get('ui_right'))
 			ui_right.push(key.toString());
+		for (key in Controls.controls.get('ui_accept'))
+			ui_accept.push(key.toString());
 
 		var saveFile:ControlsPreferenceFile = {
 			game_pause: game_pause,
@@ -86,6 +90,7 @@ class ControlsSave
 			ui_down: ui_down,
 			ui_left: ui_left,
 			ui_up: ui_up,
+			ui_accept: ui_accept,
 		};
 
 		if (path == null)
@@ -124,6 +129,7 @@ class ControlsSave
 			var ui_left:Array<FlxKey> = [];
 			var ui_down:Array<FlxKey> = [];
 			var ui_right:Array<FlxKey> = [];
+			var ui_accept:Array<FlxKey> = [];
 
 			for (key in saveFile.game_up)
 				game_up.push(FlxKey.fromString(key));
@@ -140,6 +146,8 @@ class ControlsSave
 				ui_down.push(FlxKey.fromString(key));
 			for (key in saveFile.ui_right)
 				ui_right.push(FlxKey.fromString(key));
+			for (key in saveFile.ui_accept)
+				ui_accept.push(FlxKey.fromString(key));
 
 			Controls.controls.set('game_up', game_up);
 			Controls.controls.set('game_down', game_down);
@@ -149,6 +157,7 @@ class ControlsSave
 			Controls.controls.set('ui_left', ui_left);
 			Controls.controls.set('ui_down', ui_down);
 			Controls.controls.set('ui_right', ui_right);
+			Controls.controls.set('ui_accept', ui_accept);
 
 			save(path);
 		}
@@ -165,4 +174,5 @@ typedef ControlsPreferenceFile =
 	var ui_left:Array<String>;
 	var ui_down:Array<String>;
 	var ui_right:Array<String>;
+	var ui_accept:Array<String>;
 }
