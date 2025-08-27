@@ -51,7 +51,7 @@ class ControlsSave
 
 	public function load(path:Null<String> = null)
 	{
-		trace('[CONTROLS SAVE] Loading $path controls preference file');
+		trace('[CONTROLS SAVE] Loading "$path" controls preference file');
 
 		var saveFile:Dynamic;
 
@@ -62,7 +62,7 @@ class ControlsSave
 		catch (e)
 		{
 			saveFile = null;
-			trace('[CONTROLS SAVE] LOADING ERROR: ${e.message}');
+			trace('[CONTROLS SAVE] LOADING ERROR: "${e.message}"');
 		}
 
 		if (saveFile != null)
