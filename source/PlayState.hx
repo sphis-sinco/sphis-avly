@@ -52,12 +52,12 @@ class PlayState extends FlxState
 		player_last_dir = player_dir;
 		player_dir = 0;
 
-		if (player_moving_up)
+		if (player_moving_up && player.y > player.height)
 		{
 			player_dir = 1;
 			player.y -= player.width / player_vertical_speed_divider;
 		}
-		if (player_moving_down)
+		if (player_moving_down && player.y < FlxG.height - (player.height * 2))
 		{
 			player_dir = -1;
 			player.y += player.width / player_vertical_speed_divider;
