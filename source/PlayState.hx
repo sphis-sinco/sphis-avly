@@ -3,14 +3,11 @@ package;
 import Controls.ControlsSave;
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
-import modding.PolymodHandler;
-import modding.events.ScriptEventType;
-import modding.events.ScriptEvents;
-import modding.modules.ScriptedModule;
 
-class PlayState extends State
+class PlayState extends FlxState
 {
 	public var player:FlxSprite;
 	public var player_vertical_speed_divider:Float = 10;
@@ -43,8 +40,6 @@ class PlayState extends State
 	{
 		super.create();
 
-		PolymodHandler.loadAllMods();
-
 		player = new FlxSprite();
 		player.makeGraphic(48, 48, Color.fstr('0xff0000'));
 
@@ -62,11 +57,6 @@ class PlayState extends State
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
-
-		if (FlxG.keys.justReleased.F5)
-		{
-			FlxG.resetGame();
-		}
 
 		player_last_dir = player_dir;
 		player_dir = 0;
