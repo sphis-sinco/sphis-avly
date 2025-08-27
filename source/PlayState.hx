@@ -41,8 +41,6 @@ class PlayState extends FlxState
 	{
 		super.create();
 
-		PolymodHandler.loadAllMods();
-
 		player = new FlxSprite();
 		player.makeGraphic(48, 48, Color.fstr('0xff0000'));
 
@@ -63,7 +61,7 @@ class PlayState extends FlxState
 
 		if (FlxG.keys.justReleased.F5)
 		{
-			FlxG.resetGame();
+			PolymodHandler.forceReloadAssets();
 		}
 
 		player_last_dir = player_dir;
