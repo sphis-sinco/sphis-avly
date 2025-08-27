@@ -2,7 +2,7 @@ package modding.modules;
 
 import flixel.FlxG;
 import modding.events.*;
-import modding.events.ScriptEvents;
+import modding.events.ScriptEvent;
 
 class ModuleHandler
 {

@@ -16,7 +16,6 @@ enum abstract ScriptEventType(String) from String to String
 	var SUBSTATE_CLOSE_END = 'SUBSTATE_CLOSE_END';
 
 	var FOCUS_GAINED = 'FOCUS_GAINED';
-	var FOCUS_LOST = 'FOCUS_LOST';
 
 	/**
 	 * Allow for comparing `ScriptEventType` to `String`.
