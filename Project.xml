@@ -42,8 +42,6 @@
 
 	<haxelib name="polymod" />
 
-	<haxelib name="hxcpp-debug-server" if="windows debug" />
-
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
 	<!--Remove the legacy health system-->
