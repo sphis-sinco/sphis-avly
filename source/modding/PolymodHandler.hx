@@ -7,7 +7,7 @@ import thx.semver.VersionRule;
 
 class PolymodHandler
 {
-	static final API_VERSION_RULE:VersionRule = '';
+	static final API_VERSION_RULE:VersionRule = '>=1.0.0 <2.0.0';
 	static final MOD_FOLDER:String = 'mods';
 
 	public static function getAllMods():Array<ModMetadata>
