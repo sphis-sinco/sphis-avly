@@ -1,1 +1,10 @@
-{}
+{
+        "game_up": ["UP", "W"],
+        "game_down": ["DOWN", "S"],
+        "game_pause": ["ENTER", "ESCAPE"],
+
+        "ui_up": ["UP", "W"],
+        "ui_left": ["LEFT", "A"],
+        "ui_down": ["DOWN", "S"],
+        "ui_right": ["RIGHT", "D"]
+}

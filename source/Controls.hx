@@ -53,7 +53,7 @@ class ControlsSave
 	{
 		trace('[CONTROLS SAVE] Loading "$path" controls preference file');
 
-		var saveFile:Dynamic;
+		var saveFile:ControlsPreferenceFile;
 
 		try
 		{
@@ -70,4 +70,16 @@ class ControlsSave
 			save(path);
 		}
 	}
+}
+
+typedef ControlsPreferenceFile =
+{
+	var game_up:Array<String>;
+	var game_down:Array<String>;
+	var game_pause:Array<String>;
+
+	var ui_up:Array<String>;
+	var ui_left:Array<String>;
+	var ui_down:Array<String>;
+	var ui_right:Array<String>;
 }
