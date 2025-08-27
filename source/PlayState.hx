@@ -16,7 +16,10 @@ class PlayState extends FlxState
 
 		player = new FlxSprite();
 		player.makeGraphic(48, 48, Color.fstr('0xff0000'));
-		player.screenCenter();
+
+		player.screenCenter(Y);
+		player.x = player.width * 1.5;
+
 		add(player);
 
 		add(bulletGroup);
