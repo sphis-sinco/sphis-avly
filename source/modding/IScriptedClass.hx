@@ -1,6 +1,6 @@
 package modding;
 
-import modding.events.ScriptEvent;
+import modding.events.ScriptEvents;
 
 interface IScriptedClass
 {

@@ -1,5 +1,7 @@
 package modding.events;
 
+import modding.events.ScriptEvents;
+
 /**
  * Utility functions to assist with handling scripted classes.
  */

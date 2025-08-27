@@ -3,12 +3,11 @@ package;
 import Controls.ControlsSave;
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import modding.PolymodHandler;
 
-class PlayState extends FlxState
+class PlayState extends State
 {
 	public var player:FlxSprite;
 	public var player_vertical_speed_divider:Float = 10;

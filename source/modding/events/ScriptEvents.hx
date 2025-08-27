@@ -127,3 +127,22 @@ class FocusScriptEvent extends ScriptEvent
 		return 'FocusScriptEvent(type=' + type + ')';
 	}
 }
+
+class SubStateScriptEvent extends ScriptEvent
+{
+	/**
+	 * The state the game is moving into.
+	 */
+	public var targetState(default, null):FlxSubState;
+
+	public function new(type:ScriptEventType, targetState:FlxSubState, cancelable:Bool = false):Void
+	{
+		super(type, cancelable);
+		this.targetState = targetState;
+	}
+
+	public override function toString():String
+	{
+		return 'SubStateScriptEvent(type=' + type + ', targetState=' + targetState + ')';
+	}
+}
