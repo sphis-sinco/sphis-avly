@@ -8,9 +8,7 @@ class Controls
 	public static var controls:Map<String, Array<FlxKey>> = [
 		// game_
 		'game_up' => [UP, W],
-		'game_left' => [LEFT, A],
 		'game_down' => [DOWN, S],
-		'game_right' => [RIGHT, D],
 		'game_pause' => [ENTER, ESCAPE],
 		// ui_
 		'ui_up' => [UP, W],
