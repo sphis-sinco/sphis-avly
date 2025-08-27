@@ -47,7 +47,56 @@ class ControlsSave
 		publicPath = pPath;
 	}
 
-	public function save(path:Null<String> = null) {}
+	public function save(path:Null<String> = null)
+	{
+		#if sys
+		trace('[CONTROLS SAVE] Saving controls to "$path" preference file via Sys');
+
+		var game_up:Array<String> = [];
+		var game_down:Array<String> = [];
+		var game_pause:Array<String> = [];
+
+		var ui_up:Array<String> = [];
+		var ui_left:Array<String> = [];
+		var ui_down:Array<String> = [];
+		var ui_right:Array<String> = [];
+
+		for (key in Controls.controls.get('game_up'))
+			game_up.push(key.toString());
+		for (key in Controls.controls.get('game_down'))
+			game_down.push(key.toString());
+		for (key in Controls.controls.get('game_pause'))
+			game_pause.push(key.toString());
+
+		for (key in Controls.controls.get('ui_up'))
+			ui_up.push(key.toString());
+		for (key in Controls.controls.get('ui_left'))
+			ui_left.push(key.toString());
+		for (key in Controls.controls.get('ui_down'))
+			ui_down.push(key.toString());
+		for (key in Controls.controls.get('ui_right'))
+			ui_right.push(key.toString());
+
+		var saveFile:ControlsPreferenceFile = {
+			game_pause: game_pause,
+			game_down: game_down,
+			game_up: game_up,
+
+			ui_right: ui_right,
+			ui_down: ui_down,
+			ui_left: ui_left,
+			ui_up: ui_up,
+		};
+
+		if (path == null)
+			trace('[CONTROLS SAVE] PATH NULL! CANNOT SAVE!!');
+		if (path == null)
+			return;
+		sys.io.File.saveContent((path != null) ? path : '', Json.stringify(saveFile));
+		#else
+		trace('[CONTROLS SAVE] Not sys, cannot save.');
+		#end
+	}
 
 	public function load(path:Null<String> = null)
 	{
@@ -67,14 +116,39 @@ class ControlsSave
 
 		if (saveFile != null)
 		{
-			Controls.controls.set('game_up', saveFile.game_up);
-			Controls.controls.set('game_down', saveFile.game_down);
-			Controls.controls.set('game_pause', saveFile.game_pause);
+			var game_up:Array<FlxKey> = [];
+			var game_down:Array<FlxKey> = [];
+			var game_pause:Array<FlxKey> = [];
 
-			Controls.controls.set('ui_up', saveFile.ui_up);
-			Controls.controls.set('ui_left', saveFile.ui_left);
-			Controls.controls.set('ui_down', saveFile.ui_down);
-			Controls.controls.set('ui_right', saveFile.ui_right);
+			var ui_up:Array<FlxKey> = [];
+			var ui_left:Array<FlxKey> = [];
+			var ui_down:Array<FlxKey> = [];
+			var ui_right:Array<FlxKey> = [];
+
+			for (key in saveFile.game_up)
+				game_up.push(FlxKey.fromString(key));
+			for (key in saveFile.game_down)
+				game_down.push(FlxKey.fromString(key));
+			for (key in saveFile.game_pause)
+				game_pause.push(FlxKey.fromString(key));
+
+			for (key in saveFile.ui_up)
+				ui_up.push(FlxKey.fromString(key));
+			for (key in saveFile.ui_left)
+				ui_left.push(FlxKey.fromString(key));
+			for (key in saveFile.ui_down)
+				ui_down.push(FlxKey.fromString(key));
+			for (key in saveFile.ui_right)
+				ui_right.push(FlxKey.fromString(key));
+
+			Controls.controls.set('game_up', game_up);
+			Controls.controls.set('game_down', game_down);
+			Controls.controls.set('game_pause', game_pause);
+
+			Controls.controls.set('ui_up', ui_up);
+			Controls.controls.set('ui_left', ui_left);
+			Controls.controls.set('ui_down', ui_down);
+			Controls.controls.set('ui_right', ui_right);
 
 			save(path);
 		}
@@ -83,12 +157,12 @@ class ControlsSave
 
 typedef ControlsPreferenceFile =
 {
-	var game_up:Array<FlxKey>;
-	var game_down:Array<FlxKey>;
-	var game_pause:Array<FlxKey>;
+	var game_up:Array<String>;
+	var game_down:Array<String>;
+	var game_pause:Array<String>;
 
-	var ui_up:Array<FlxKey>;
-	var ui_left:Array<FlxKey>;
-	var ui_down:Array<FlxKey>;
-	var ui_right:Array<FlxKey>;
+	var ui_up:Array<String>;
+	var ui_left:Array<String>;
+	var ui_down:Array<String>;
+	var ui_right:Array<String>;
 }
