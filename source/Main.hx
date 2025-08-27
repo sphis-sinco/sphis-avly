@@ -1,7 +1,6 @@
 package;
 
 import flixel.FlxGame;
-import modding.PolymodHandler;
 import openfl.display.Sprite;
 
 class Main extends Sprite
