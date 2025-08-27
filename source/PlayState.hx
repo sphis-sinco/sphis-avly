@@ -6,9 +6,6 @@ import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import modding.PolymodHandler;
-import modding.events.ScriptEventType;
-import modding.events.ScriptEvents;
-import modding.modules.ScriptedModule;
 
 class PlayState extends State
 {
