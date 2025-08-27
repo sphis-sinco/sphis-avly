@@ -1,5 +1,6 @@
 package;
 
+import Controls.ControlsSave;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -30,6 +31,11 @@ class PlayState extends FlxState
 
 	public var bulletGroup:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 
+	override public function new()
+	{
+		super();
+	}
+
 	override public function create()
 	{
 		super.create();
@@ -43,6 +49,9 @@ class PlayState extends FlxState
 		add(player);
 
 		add(bulletGroup);
+
+		Controls.save = new ControlsSave('game/preferences/controls.json');
+		Controls.save.load(Controls.save.publicPath);
 	}
 
 	override public function update(elapsed:Float)

@@ -38,15 +38,17 @@ class Controls
 
 class ControlsSave
 {
-	public function save(path:String)
+	public var publicPath:Null<String>;
+
+	public function new(pPath:Null<String> = null)
 	{
-		trace(new NotImplementedException('ControlsSave "save(${path})" unimplemented'));
+		publicPath = pPath;
 	}
 
-	public function load(path:String)
-	{
-		trace(new NotImplementedException('ControlsSave "load(${path})" unimplemented'));
+	public function save(path:Null<String> = null) {}
 
+	public function load(path:Null<String> = null)
+	{
 		save(path);
 	}
 }
