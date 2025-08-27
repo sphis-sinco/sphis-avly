@@ -10,8 +10,6 @@ class Main extends Sprite
 	{
 		super();
 
-		PolymodHandler.loadAllMods();
-
 		addChild(new FlxGame(0, 0, PlayState));
 	}
 }
