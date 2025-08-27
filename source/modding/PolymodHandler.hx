@@ -3,7 +3,6 @@ package modding;
 import polymod.Polymod;
 import polymod.format.ParseRules;
 import sys.FileSystem;
-import thx.semver.VersionRule;
 
 class PolymodHandler
 {
@@ -42,6 +41,8 @@ class PolymodHandler
 			trace('[POLYMOD HANDLER] There are 0 mods attempting to be loaded');
 			return;
 		}
+
+		trace('[POLYMOD HANDLER] Attempting to load ${i.length} mods');
 
 		Polymod.addDefaultImport(Color);
 		Polymod.addDefaultImport(Controls);
