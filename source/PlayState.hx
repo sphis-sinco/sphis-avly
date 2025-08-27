@@ -1,12 +1,32 @@
 package;
 
+import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.math.FlxMath;
 
 class PlayState extends FlxState
 {
 	public var player:FlxSprite;
+	public var player_vertical_speed_divider:Float = 10;
+
+	public var player_last_dir:Int = 0;
+	public var player_dir:Int = 0;
+
+	public var player_moving_up(get, never):Bool;
+
+	function get_player_moving_up():Bool
+	{
+		return Controls.getControlPressed('game_up');
+	}
+
+	public var player_moving_down(get, never):Bool;
+
+	function get_player_moving_down():Bool
+	{
+		return Controls.getControlPressed('game_down');
+	}
 
 	public var bulletGroup:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 
@@ -28,5 +48,30 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		player_last_dir = player_dir;
+		player_dir = 0;
+
+		if (player_moving_up)
+		{
+			player_dir = 1;
+			player.y -= player.width / player_vertical_speed_divider;
+		}
+		if (player_moving_down)
+		{
+			player_dir = -1;
+			player.y += player.width / player_vertical_speed_divider;
+		}
+
+		if (player_moving_down || player_moving_up)
+		{
+			player_vertical_speed_divider = FlxMath.lerp(player_vertical_speed_divider, 5, (1 / 10));
+		}
+		else
+		{
+			player_vertical_speed_divider = FlxMath.lerp(player_vertical_speed_divider, 10, (1 / 5));
+		}
+
+		FlxG.watch.addQuick('PVSD', player_vertical_speed_divider);
 	}
 }
