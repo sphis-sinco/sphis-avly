@@ -67,6 +67,15 @@ class ControlsSave
 
 		if (saveFile != null)
 		{
+			Controls.controls.set('game_up', saveFile.game_up);
+			Controls.controls.set('game_down', saveFile.game_down);
+			Controls.controls.set('game_pause', saveFile.game_pause);
+
+			Controls.controls.set('ui_up', saveFile.ui_up);
+			Controls.controls.set('ui_left', saveFile.ui_left);
+			Controls.controls.set('ui_down', saveFile.ui_down);
+			Controls.controls.set('ui_right', saveFile.ui_right);
+
 			save(path);
 		}
 	}
@@ -74,12 +83,12 @@ class ControlsSave
 
 typedef ControlsPreferenceFile =
 {
-	var game_up:Array<String>;
-	var game_down:Array<String>;
-	var game_pause:Array<String>;
+	var game_up:Array<FlxKey>;
+	var game_down:Array<FlxKey>;
+	var game_pause:Array<FlxKey>;
 
-	var ui_up:Array<String>;
-	var ui_left:Array<String>;
-	var ui_down:Array<String>;
-	var ui_right:Array<String>;
+	var ui_up:Array<FlxKey>;
+	var ui_left:Array<FlxKey>;
+	var ui_down:Array<FlxKey>;
+	var ui_right:Array<FlxKey>;
 }
