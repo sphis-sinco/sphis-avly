@@ -53,6 +53,8 @@ class PlayState extends FlxState
 		player.screenCenter(Y);
 		player.x = player.width * 1.5;
 
+		player.scale.set(2, 2);
+
 		add(player);
 
 		bulletGroup = new FlxTypedGroup<FlxSprite>();
