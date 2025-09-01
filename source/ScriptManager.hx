@@ -112,8 +112,7 @@ class ScriptManager
 	{
 		script.set('ScriptsManager', ScriptManager, false);
 
-		script.set('Characters.NORMAL_DIFF', Characters.NORMAL_DIFF);
-		script.set('Characters.HARD_DIFF', Characters.HARD_DIFF);
+		script.set('Characters', {NORMAL_DIFF: Characters.NORMAL_DIFF, HARD_DIFF: Characters.HARD_DIFF});
 
 		script.set('PlayState', PlayState);
 		script.set('Game', PlayState);
