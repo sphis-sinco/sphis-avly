@@ -46,7 +46,9 @@ class PlayState extends FlxState
 			player_character = Characters.NORMAL_DIFF;
 
 		player = new FlxSprite();
-		player.makeGraphic(48, 48, (player_character == Characters.HARD_DIFF) ? Color.fstr('0xff0000') : Color.fstr('0x00ff00'));
+		player.loadGraphic('game/assets/characters/$player_character', true, 48, 48);
+		player.animation.add('fly', [0, 1], 24);
+		player.animation.play('fly');
 
 		player.screenCenter(Y);
 		player.x = player.width * 1.5;
