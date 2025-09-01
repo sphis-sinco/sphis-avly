@@ -2,7 +2,6 @@ package;
 
 import crowplexus.iris.Iris;
 import crowplexus.iris.IrisConfig;
-import flixel.FlxG;
 import lime.app.Application;
 import sys.FileSystem;
 import sys.io.File;
