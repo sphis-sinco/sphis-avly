@@ -1,6 +1,5 @@
 import events.SpawnBulletEvent;
 import events.UpdateEvent;
-import flixel.FlxSprite;
 
 function onAdded() {}
 function onCreate() {}
