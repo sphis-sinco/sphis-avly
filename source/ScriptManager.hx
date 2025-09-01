@@ -10,7 +10,7 @@ import sys.io.File;
 
 class ScriptManager
 {
-	public static var SCRIPT_FOLDER:String = 'game/scripts';
+	public static var SCRIPT_FOLDER:String = 'scripts';
 
 	public static var SCRIPT_EXTS:Array<String> = ['hxc', 'hx', 'haxe', 'hscript'];
 
@@ -135,9 +135,16 @@ class ScriptManager
 	{
 		#if sys
 		var sys = [];
-		for (file in FileSystem.readDirectory('$script_folder/'))
+		for (file in FileSystem.readDirectory('game/$script_folder/'))
 		{
-			sys.push('$script_folder/$file');
+			sys.push('game/$script_folder/$file');
+		}
+		for (mod in ModManager.MOD_IDS)
+		{
+			for (file in FileSystem.readDirectory('game/${ModManager.MODS_FOLDER}/$mod/$script_folder/'))
+			{
+				sys.push('game/${ModManager.MODS_FOLDER}/$mod/$script_folder/$file');
+			}
 		}
 		return sys;
 		#else
