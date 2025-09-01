@@ -9,6 +9,11 @@ function onUpdate(elapsed:Float)
 		else if (Script.state == 'CharacterSelect')
 			FlxG.switchState(() -> new PlayState());
 	}
+	if (FlxG.mouse.justReleased)
+	{
+		if (Script.state == 'CharacterSelect')
+			FlxG.switchState(() -> new PlayState());
+	}
 	if (FlxG.keys.justReleased.R && Script.isDebug())
 	{
 		if (PlayState.player_character == Characters.NORMAL_DIFF)
