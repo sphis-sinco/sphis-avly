@@ -2,6 +2,7 @@ package;
 
 import crowplexus.iris.Iris;
 import crowplexus.iris.IrisConfig;
+import flixel.FlxG;
 import lime.app.Application;
 import sys.FileSystem;
 import sys.io.File;
@@ -9,7 +10,8 @@ import sys.io.File;
 class ScriptManager
 {
 	public static var SCRIPT_FOLDER:String = 'scripts';
-	public static var SCRIPT_EXT:String = 'hxc';
+
+	public static var SCRIPT_EXTS:Array<String> = ['hxc', 'hx', 'haxe', 'hscript'];
 
 	public static var SCRIPTS:Array<Iris> = [];
 
@@ -29,7 +31,13 @@ class ScriptManager
 	{
 		var newScript:Iris;
 
-		if (!StringTools.endsWith(path, '.${SCRIPT_EXT}'))
+		var noExt:Int = 0;
+		for (ext in SCRIPT_EXTS)
+		{
+			if (!StringTools.endsWith(path, '.$ext'))
+				noExt++;
+		}
+		if (noExt >= SCRIPT_EXTS.length)
 			return;
 
 		try
