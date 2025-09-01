@@ -97,6 +97,9 @@ class ScriptManager
 
 		script.set('FlxMath', flixel.math.FlxMath, false);
 
+		script.set('PlayState', PlayState);
+		script.set('Game', PlayState);
+
 		script.set('debug', #if debug true #else false #end, true);
 		script.set('colorFromString', function(string:String)
 		{
