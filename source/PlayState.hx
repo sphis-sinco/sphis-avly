@@ -78,6 +78,33 @@ class PlayState extends FlxState
 			player_vertical_speed_divider = FlxMath.lerp(player_vertical_speed_divider, 10, (1 / 5));
 		}
 
+		if (bulletSpawnCondition())
+		{
+			spawnBullet();
+		}
+
+		for (bullet in bulletGroup.members)
+		{
+			bullet.x -= bullet.width;
+
+			if (bullet.x < -(bullet.width * 2))
+			{
+				bullet.destroy();
+				bulletGroup.members.remove(bullet);
+			}
+		}
+
 		FlxG.watch.addQuick('PVSD', player_vertical_speed_divider);
+	}
+
+	public static function spawnBullet()
+	{
+		var newBullet = new FlxSprite();
+		newBullet.makeGraphic(16, 8, Color.fstr('0xffff00'));
+
+		newBullet.screenCenter(Y);
+		newBullet.x = FlxG.width + newBullet.width;
+
+		bulletGroup.add(newBullet);
 	}
 }
