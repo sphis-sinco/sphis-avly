@@ -7,7 +7,7 @@ function onCreate()
 
 	if (PlayState.player_character == Characters.HARD_DIFF)
 	{
-		PlayState.player_max_speed = 2;
-		PlayState.player_min_speed = 5;
+		PlayState.player_max_speed = 3;
+		PlayState.player_min_speed = 7;
 	}
 }
