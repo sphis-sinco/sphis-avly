@@ -48,8 +48,10 @@ class PlayState extends FlxState
 		player.loadGraphic('game/img/characters/$player_character.png', true, 48, 48);
 		for (mod in ModManager.MOD_IDS)
 		{
+			#if sys
 			if (FileSystem.exists('game/${ModManager.MODS_FOLDER}/$mod/img/characters/$player_character.png'))
 				player.loadGraphic('game/${ModManager.MODS_FOLDER}/$mod/img/characters/$player_character.png', true, 48, 48);
+			#end
 		}
 		player.animation.add('fly', [0, 1], 8);
 		player.animation.play('fly');
@@ -126,8 +128,10 @@ class PlayState extends FlxState
 
 		for (mod in ModManager.MOD_IDS)
 		{
+			#if sys
 			if (FileSystem.exists('game/${ModManager.MODS_FOLDER}/$mod/img/bullet.png'))
 				newBullet.loadGraphic('game/${ModManager.MODS_FOLDER}/$mod/img/bullet.png');
+			#end
 		}
 
 		newBullet.y = player.y;
