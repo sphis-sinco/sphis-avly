@@ -1,5 +1,6 @@
 package;
 
+import haxe.Json;
 import sys.FileSystem;
 
 class ModManager
@@ -19,7 +20,17 @@ class ModManager
 
 		for (entry in FileSystem.readDirectory('game/$MODS_FOLDER/'))
 		{
-			if (FileSystem.exists('game/$MODS_FOLDER/$entry/$MOD_METADATA_FILE'))
+			var meta:ModMeta;
+			try
+			{
+				meta = Json.parse('game/$MODS_FOLDER/$entry/$MOD_METADATA_FILE');
+			}
+			catch (e)
+			{
+				meta = null;
+			}
+
+			if (meta != null)
 				MOD_IDS.push(entry);
 		}
 		#end

@@ -1,0 +1,14 @@
+{
+        "name": "Tester Mod",
+        "version": 1.00,
+
+        "credits": [
+                {
+                        "name": "Sphis",
+                        "url": null,
+                        "role": "Made it"
+                }
+        ],
+
+        "priority": 0
+}
