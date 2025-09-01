@@ -9,6 +9,7 @@ class Main extends Sprite
 	{
 		super();
 
+		ModManager.loadMods();
 		ScriptManager.loadAllScripts();
 		addChild(new FlxGame(0, 0, PlayState));
 	}
