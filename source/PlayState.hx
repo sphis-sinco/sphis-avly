@@ -76,6 +76,9 @@ class PlayState extends FlxState
 		{
 			bullet.x -= (bullet.width / 2);
 
+			if (bullet.overlaps(player))
+				FlxG.switchState(() -> new CharacterSelect());
+
 			if (bullet.x < -(bullet.width * 2))
 			{
 				bullet.destroy();
