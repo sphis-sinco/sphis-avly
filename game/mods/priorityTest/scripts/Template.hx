@@ -2,5 +2,5 @@ import flixel.FlxSprite;
 
 function onAdded()
 {
-	trace('testermod loaded cuz I exist');
+	trace('pri loaded cuz I exist');
 }
