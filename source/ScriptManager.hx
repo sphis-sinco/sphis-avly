@@ -30,7 +30,7 @@ class ScriptManager
 		@:privateAccess {
 			if (!script.interp.variables.exists(method))
 			{
-				final errMsg = '[SCRIPTMANAGER] script(${script.config.name}) missing method: $method';
+				final errMsg = 'script(${script.config.name}) missing method: $method';
 
 				if (!SCRIPTS_ERRS.exists('missing_method($method)_${script.config.name}'))
 				{
@@ -51,7 +51,7 @@ class ScriptManager
 			}
 			catch (e)
 			{
-				final errMsg = '[SCRIPTMANAGER] error calling script(${script.config.name}) method: ' + e;
+				final errMsg = 'error calling script(${script.config.name}) method: ' + e;
 
 				if (!SCRIPTS_ERRS.exists('method($method)_error_${script.config.name}'))
 				{
@@ -94,7 +94,7 @@ class ScriptManager
 		catch (e)
 		{
 			newScript = null;
-			trace('[SCRIPTMANAGER] Error loading script($path): ${e.message}');
+			trace('Error loading script($path): ${e.message}');
 			Application.current.window.alert('Error loading script($path): ${e.message}\n\n${e.details}', 'Error loading script5');
 		}
 
@@ -102,7 +102,7 @@ class ScriptManager
 		{
 			initalizeScriptVariables(newScript);
 
-			trace('[SCRIPTMANAGER] Loaded script($path)');
+			trace('Loaded script($path)');
 
 			SCRIPTS.push(newScript);
 			callSingular(newScript, 'onAdded');
