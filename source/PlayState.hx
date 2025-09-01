@@ -46,8 +46,8 @@ class PlayState extends FlxState
 			player_character = Characters.NORMAL_DIFF;
 
 		player = new FlxSprite();
-		player.loadGraphic('game/assets/characters/$player_character', true, 48, 48);
-		player.animation.add('fly', [0, 1], 24);
+		player.loadGraphic('game/img/characters/$player_character.png', true, 48, 48);
+		player.animation.add('fly', [0, 1], 8);
 		player.animation.play('fly');
 
 		player.screenCenter(Y);
@@ -119,7 +119,7 @@ class PlayState extends FlxState
 	public static function spawnBullet()
 	{
 		var newBullet = new FlxSprite();
-		newBullet.makeGraphic(16, 8, Color.fstr('0xffff00'));
+		newBullet.loadGraphic('game/img/bullet.png');
 
 		newBullet.y = player.y;
 		newBullet.y += Math.abs(FlxG.random.float(newBullet.width * -10, newBullet.width * 10));
