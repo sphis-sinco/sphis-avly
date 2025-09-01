@@ -6,9 +6,6 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
-#if sys
-import sys.FileSystem;
-#end
 
 class PlayState extends FlxState
 {

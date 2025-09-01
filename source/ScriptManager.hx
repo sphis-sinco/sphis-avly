@@ -3,7 +3,6 @@ package;
 import crowplexus.iris.Iris;
 import crowplexus.iris.IrisConfig;
 import lime.app.Application;
-import openfl.Assets;
 #if sys
 import sys.FileSystem;
 import sys.io.File;
@@ -114,20 +113,15 @@ class ScriptManager
 
 	public static function initalizeScriptVariables(script:Iris)
 	{
-		script.set('ScriptsManager', ScriptManager, false);
+		script.set('Type', Type, false);
 
+		script.set('ScriptManager', ScriptManager, false);
 		script.set('Characters', {NORMAL_DIFF: Characters.NORMAL_DIFF, HARD_DIFF: Characters.HARD_DIFF});
-
-		script.set('PlayState', PlayState);
-		script.set('Game', PlayState);
-
-		script.set('CharacterSelect', CharacterSelect);
-
-		script.set('Color', Color);
-
-		script.set('Controls', Controls);
-
-		script.set('Script', Script);
+		script.set('PlayState', PlayState, false);
+		script.set('CharacterSelect', CharacterSelect, false);
+		script.set('Color', Color, false);
+		script.set('Controls', Controls, false);
+		script.set('Script', Script, false);
 	}
 
 	public static function loadScriptsByPaths(paths:Array<String>)
