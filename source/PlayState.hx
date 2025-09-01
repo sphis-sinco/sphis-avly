@@ -36,14 +36,7 @@ class PlayState extends FlxState
 			player_character = Characters.NORMAL_DIFF;
 
 		player = new FlxSprite();
-		player.loadGraphic('game/img/characters/$player_character.png', true, 48, 48);
-		for (mod in ModManager.MOD_IDS)
-		{
-			#if sys
-			if (FileSystem.exists('game/${ModManager.MODS_FOLDER}/$mod/img/characters/$player_character.png'))
-				player.loadGraphic('game/${ModManager.MODS_FOLDER}/$mod/img/characters/$player_character.png', true, 48, 48);
-			#end
-		}
+		player.loadGraphic(Paths.getGamePath('img/characters/$player_character.png'), true, 48, 48);
 		player.animation.add('fly', [0, 1], 8);
 		player.animation.play('fly');
 
@@ -57,7 +50,7 @@ class PlayState extends FlxState
 		bulletGroup = new FlxTypedGroup<FlxSprite>();
 		add(bulletGroup);
 
-		Controls.save = new ControlsSave('game/preferences/controls.json');
+		Controls.save = new ControlsSave(Paths.getGamePath('preferences/controls.json'));
 		Controls.save.load(Controls.save.publicPath);
 
 		bulletSpawnCondition = function()
@@ -118,15 +111,7 @@ class PlayState extends FlxState
 	public static function spawnBullet()
 	{
 		var newBullet = new FlxSprite();
-		newBullet.loadGraphic('game/img/bullet.png');
-
-		for (mod in ModManager.MOD_IDS)
-		{
-			#if sys
-			if (FileSystem.exists('game/${ModManager.MODS_FOLDER}/$mod/img/bullet.png'))
-				newBullet.loadGraphic('game/${ModManager.MODS_FOLDER}/$mod/img/bullet.png');
-			#end
-		}
+		newBullet.loadGraphic(Paths.getGamePath('img/bullet.png'));
 
 		newBullet.y = player.y;
 		newBullet.y += Math.abs(FlxG.random.float(newBullet.width * -10, newBullet.width * 10));

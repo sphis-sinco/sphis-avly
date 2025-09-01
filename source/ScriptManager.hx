@@ -143,18 +143,12 @@ class ScriptManager
 		for (file in FileSystem.readDirectory('game/$script_folder/'))
 		{
 			sys.push('game/$script_folder/$file');
-		}
-		for (mod in ModManager.MOD_IDS)
-		{
-			if (FileSystem.exists('game/${ModManager.MODS_FOLDER}/$mod/$script_folder/'))
-				for (file in FileSystem.readDirectory('game/${ModManager.MODS_FOLDER}/$mod/$script_folder/'))
-				{
-					sys.push('game/${ModManager.MODS_FOLDER}/$mod/$script_folder/$file');
-				}
+			if (!sys.contains(Paths.getGamePath('$script_folder/$file')))
+				sys.push(Paths.getGamePath('$script_folder/$file'));
 		}
 		return sys;
 		#elseif html5
-		var genScriptPath = function(filepath:String) return 'game/$script_folder/$filepath';
+		var genScriptPath = function(filepath:String) return Paths.getGamePath('$script_folder/$filepath');
 		return [
 			genScriptPath('BulletMove.hx'),
 			genScriptPath('BulletSpawnCondition.hx'),
