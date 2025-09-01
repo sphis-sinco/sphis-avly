@@ -3,8 +3,10 @@ package;
 import crowplexus.iris.Iris;
 import crowplexus.iris.IrisConfig;
 import lime.app.Application;
+#if sys
 import sys.FileSystem;
 import sys.io.File;
+#end
 
 class ScriptManager
 {

@@ -3,7 +3,6 @@ package;
 import flixel.FlxG;
 import flixel.input.keyboard.FlxKey;
 import haxe.Json;
-import haxe.exceptions.NotImplementedException;
 import lime.utils.Assets;
 
 class Controls
