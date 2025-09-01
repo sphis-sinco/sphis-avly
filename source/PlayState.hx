@@ -53,12 +53,13 @@ class PlayState extends FlxState
 		Controls.save = new ControlsSave('game/preferences/controls.json');
 		Controls.save.load(Controls.save.publicPath);
 
-		ScriptManager.call('onCreate', 'random', 'args', 'for', 'testing');
+		ScriptManager.call('onCreate');
 	}
 
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+		ScriptManager.call('onUpdate', elapsed);
 
 		player_last_dir = player_dir;
 		player_dir = 0;
