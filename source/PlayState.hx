@@ -52,6 +52,8 @@ class PlayState extends FlxState
 
 		Controls.save = new ControlsSave('game/preferences/controls.json');
 		Controls.save.load(Controls.save.publicPath);
+
+		ScriptManager.call('onCreate', 'random', 'args', 'for', 'testing');
 	}
 
 	override public function update(elapsed:Float)

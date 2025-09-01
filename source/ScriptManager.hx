@@ -15,6 +15,14 @@ class ScriptManager
 
 	public static var SCRIPTS:Array<Iris> = [];
 
+	public static function call(method:String, ...args:Dynamic)
+	{
+		for (script in SCRIPTS)
+		{
+			script.call(method, args);
+		}
+	}
+
 	public static function loadAllScripts()
 	{
 		for (script in SCRIPTS)
