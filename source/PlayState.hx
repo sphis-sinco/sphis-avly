@@ -10,7 +10,7 @@ import flixel.math.FlxMath;
 class PlayState extends FlxState
 {
 	public static var player:FlxSprite;
-	public static var player_character:String = null;
+	public static var player_character:String;
 	public static var player_vertical_speed_divider:Float = 10;
 
 	public static var player_moving_up(get, never):Bool;
