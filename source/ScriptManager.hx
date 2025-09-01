@@ -3,6 +3,7 @@ package;
 import crowplexus.iris.Iris;
 import crowplexus.iris.IrisConfig;
 import lime.app.Application;
+import lime.utils.Assets;
 #if sys
 import sys.FileSystem;
 import sys.io.File;
