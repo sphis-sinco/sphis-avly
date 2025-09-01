@@ -1,6 +1,6 @@
 import flixel.FlxG;
 
-function onCreate()
+function onCreate(gameplay:Bool)
 {
 	PlayState.bulletSpawnCondition = function()
 	{

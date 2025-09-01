@@ -1,6 +1,6 @@
 import flixel.FlxSprite;
 
-function onCreate()
+function onCreate(gameplay:Bool)
 {
 	PlayState.bulletMove = function(bullet:FlxSprite)
 	{

@@ -9,6 +9,7 @@ class ModManager
 	public static var MOD_IDS:Array<String> = [];
 	public static var MOD_METAS:Map<String, ModMeta> = [];
 	public static var MOD_METADATA_FILE:String = 'meta.json';
+	public static var MOD_DISABLE_FILE:String = 'disable';
 
 	public static var MODS_FOLDER:String = 'mods';
 
@@ -23,6 +24,7 @@ class ModManager
 		for (entry in FileSystem.readDirectory('game/$MODS_FOLDER/'))
 		{
 			var meta:ModMeta;
+			var disable:String;
 			try
 			{
 				meta = Json.parse(Assets.getText('game/$MODS_FOLDER/$entry/$MOD_METADATA_FILE'));
@@ -33,7 +35,17 @@ class ModManager
 				trace('$entry meta error: ${e.message}');
 			}
 
-			if (meta != null)
+			try
+			{
+				disable = Assets.getText('game/$MODS_FOLDER/$entry/$MOD_DISABLE_FILE');
+			}
+			catch (e)
+			{
+				disable = null;
+				trace('$entry disable file error: ${e.message}');
+			}
+
+			if (meta != null && (disable == null || disable == ''))
 			{
 				MOD_IDS.push(entry);
 				MOD_METAS.set(entry, meta);

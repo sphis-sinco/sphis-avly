@@ -120,6 +120,8 @@ class ScriptManager
 		script.set('PlayState', PlayState);
 		script.set('Game', PlayState);
 
+		script.set('CharacterSelect', CharacterSelect);
+
 		script.set('Color', Color);
 
 		script.set('Controls', Controls);

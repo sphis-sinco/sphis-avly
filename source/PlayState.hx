@@ -85,7 +85,7 @@ class PlayState extends FlxState
 			}
 		};
 
-		ScriptManager.call('onCreate');
+		ScriptManager.call('onCreate', true);
 	}
 
 	override public function update(elapsed:Float)
