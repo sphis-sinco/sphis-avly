@@ -143,10 +143,11 @@ class ScriptManager
 		}
 		for (mod in ModManager.MOD_IDS)
 		{
-			for (file in FileSystem.readDirectory('game/${ModManager.MODS_FOLDER}/$mod/$script_folder/'))
-			{
-				sys.push('game/${ModManager.MODS_FOLDER}/$mod/$script_folder/$file');
-			}
+			if (FileSystem.exists('game/${ModManager.MODS_FOLDER}/$mod/$script_folder/'))
+				for (file in FileSystem.readDirectory('game/${ModManager.MODS_FOLDER}/$mod/$script_folder/'))
+				{
+					sys.push('game/${ModManager.MODS_FOLDER}/$mod/$script_folder/$file');
+				}
 		}
 		return sys;
 		#else
