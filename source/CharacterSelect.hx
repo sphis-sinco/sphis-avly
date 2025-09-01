@@ -3,11 +3,14 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.text.FlxText;
 
 class CharacterSelect extends FlxState
 {
 	public static var reos:FlxSprite;
 	public static var habo:FlxSprite;
+
+	public static var instructionText:FlxText;
 
 	override function create()
 	{
@@ -20,6 +23,12 @@ class CharacterSelect extends FlxState
 		habo = new FlxSprite();
 		habo.antialiasing = true;
 		add(habo);
+
+		instructionText = new FlxText();
+		instructionText.fieldWidth = FlxG.width;
+		instructionText.text = 'Pick a partner from the couple';
+		instructionText.alignment = 'center';
+		add(instructionText);
 
 		ScriptManager.call('onCreate');
 	}
