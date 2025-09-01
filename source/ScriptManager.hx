@@ -72,6 +72,8 @@ class ScriptManager
 		SCRIPTS = [];
 
 		loadScriptsByPaths(getAllScriptPaths(SCRIPT_FOLDER));
+
+		call('onAdded');
 	}
 
 	public static function loadScriptByPath(path:String)
@@ -105,7 +107,7 @@ class ScriptManager
 			trace('Loaded script($path)');
 
 			SCRIPTS.push(newScript);
-			callSingular(newScript, 'onAdded');
+			// callSingular(newScript, 'onAdded');
 		}
 	}
 
