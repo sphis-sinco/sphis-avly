@@ -1,6 +1,6 @@
 import flixel.FlxSprite;
 
 function onAdded() {}
-function onCreate(gameplay:Bool) {}
+function onCreate() {}
 function onUpdate(elapsed:Float) {}
 function onSpawnBullet(newBullet:FlxSprite) {}

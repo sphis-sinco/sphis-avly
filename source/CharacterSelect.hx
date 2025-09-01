@@ -21,7 +21,7 @@ class CharacterSelect extends FlxState
 		habo.antialiasing = true;
 		add(habo);
 
-		ScriptManager.call('onCreate', false);
+		ScriptManager.call('onCreate');
 	}
 
 	override function update(elapsed:Float)

@@ -4,11 +4,9 @@ function onUpdate(elapsed:Float)
 {
 	if (FlxG.keys.justReleased.ENTER)
 	{
-		final state = Type.getClassName(Type.getClass(FlxG.state)).split(".").pop();
-
-		if (state == 'PlayState')
+		if (Script.state == 'PlayState')
 			FlxG.switchState(() -> new CharacterSelect());
-		else if (state == 'CharacterSelect')
+		else if (Script.state == 'CharacterSelect')
 			FlxG.switchState(() -> new PlayState());
 	}
 	if (FlxG.keys.justReleased.R && Script.isDebug())

@@ -13,6 +13,9 @@ class PlayState extends FlxState
 	public static var player_character:String;
 	public static var player_vertical_speed_divider:Float = 10;
 
+	public static var player_min_speed:Float = 10;
+	public static var player_max_speed:Float = 5;
+
 	public static var player_moving_up:Bool;
 	public static var player_moving_down:Bool;
 
@@ -66,7 +69,7 @@ class PlayState extends FlxState
 			}
 		};
 
-		ScriptManager.call('onCreate', true);
+		ScriptManager.call('onCreate');
 	}
 
 	override public function update(elapsed:Float)
@@ -85,11 +88,11 @@ class PlayState extends FlxState
 
 		if (player_moving_down || player_moving_up)
 		{
-			player_vertical_speed_divider = FlxMath.lerp(player_vertical_speed_divider, 5, (1 / 10));
+			player_vertical_speed_divider = FlxMath.lerp(player_vertical_speed_divider, player_max_speed, (1 / player_min_speed));
 		}
 		else
 		{
-			player_vertical_speed_divider = FlxMath.lerp(player_vertical_speed_divider, 10, (1 / 5));
+			player_vertical_speed_divider = FlxMath.lerp(player_vertical_speed_divider, player_min_speed, (1 / player_max_speed));
 		}
 
 		if (bulletSpawnCondition())
