@@ -9,27 +9,24 @@ import flixel.math.FlxMath;
 
 class PlayState extends FlxState
 {
-	public var player:FlxSprite;
-	public var player_vertical_speed_divider:Float = 10;
+	public static var player:FlxSprite;
+	public static var player_vertical_speed_divider:Float = 10;
 
-	public var player_last_dir:Int = 0;
-	public var player_dir:Int = 0;
+	public static var player_moving_up(get, never):Bool;
 
-	public var player_moving_up(get, never):Bool;
-
-	function get_player_moving_up():Bool
+	static function get_player_moving_up():Bool
 	{
 		return Controls.getControlPressed('game_up');
 	}
 
-	public var player_moving_down(get, never):Bool;
+	public static var player_moving_down(get, never):Bool;
 
-	function get_player_moving_down():Bool
+	static function get_player_moving_down():Bool
 	{
 		return Controls.getControlPressed('game_down');
 	}
 
-	public var bulletGroup:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
+	public static var bulletGroup:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 
 	override public function new()
 	{
@@ -61,19 +58,10 @@ class PlayState extends FlxState
 		super.update(elapsed);
 		ScriptManager.call('onUpdate', elapsed);
 
-		player_last_dir = player_dir;
-		player_dir = 0;
-
 		if (player_moving_up && player.y > player.height)
-		{
-			player_dir = 1;
 			player.y -= player.width / player_vertical_speed_divider;
-		}
 		if (player_moving_down && player.y < FlxG.height - (player.height * 2))
-		{
-			player_dir = -1;
 			player.y += player.width / player_vertical_speed_divider;
-		}
 
 		if (player_moving_down || player_moving_up)
 		{
