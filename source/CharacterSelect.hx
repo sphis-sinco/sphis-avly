@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
+import web.HardcodedScripts;
 
 class CharacterSelect extends FlxState
 {
@@ -32,12 +33,12 @@ class CharacterSelect extends FlxState
 		add(instructionText);
 
 		ScriptManager.call('onCreate');
+		HardcodedScripts.onCreate();
 	}
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		ScriptManager.call('onUpdate', elapsed);
 
 		reos.loadGraphic(Paths.getGamePath('img/character-select/chars/reos-idle.png'));
 		reos.screenCenter();
@@ -57,5 +58,8 @@ class CharacterSelect extends FlxState
 			habo.loadGraphic(Paths.getGamePath('img/character-select/chars/habo-selected.png'));
 			PlayState.player_character = Characters.HARD_DIFF;
 		}
+
+		ScriptManager.call('onUpdate', elapsed);
+		HardcodedScripts.onUpdate(elapsed);
 	}
 }

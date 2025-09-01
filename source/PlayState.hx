@@ -8,6 +8,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxTimer;
+import web.HardcodedScripts;
 
 class PlayState extends FlxState
 {
@@ -86,8 +87,6 @@ class PlayState extends FlxState
 			}
 		};
 
-		ScriptManager.call('onCreate');
-
 		increaseTime = function()
 		{
 			time++;
@@ -101,6 +100,9 @@ class PlayState extends FlxState
 		};
 
 		increaseTime();
+
+		ScriptManager.call('onCreate');
+		HardcodedScripts.onCreate();
 	}
 
 	override public function update(elapsed:Float)
@@ -138,6 +140,7 @@ class PlayState extends FlxState
 		FlxG.watch.addQuick('PVSD', player_vertical_speed_divider);
 
 		ScriptManager.call('onUpdate', elapsed);
+		HardcodedScripts.onUpdate(elapsed);
 	}
 
 	public static function spawnBullet()
