@@ -120,12 +120,6 @@ class ScriptManager
 		script.set('Color', Color);
 
 		script.set('Controls', Controls);
-
-		script.set('debug', #if debug true #else false #end, true);
-		script.set('colorFromString', function(string:String)
-		{
-			return Color.fstr(string);
-		}, false);
 	}
 
 	public static function loadScriptsByPaths(paths:Array<String>)
