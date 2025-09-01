@@ -41,6 +41,8 @@ class ModManager
 		}
 		#end
 
+		MOD_IDS.sort(sortByPriority);
+
 		trace('${MOD_IDS.length} valid mods loaded');
 		if (MOD_IDS.length > 0)
 		{
@@ -49,6 +51,25 @@ class ModManager
 				final meta = MOD_METAS.get(id);
 				trace(' * ${meta.name}($id) v${meta.version}');
 			}
+		}
+	}
+
+	public static function sortByPriority(a:String, b:String):Int
+	{
+		var aMeta:Null<ModMeta> = MOD_METAS.get(a);
+		var bMeta:Null<ModMeta> = MOD_METAS.get(b);
+
+		if (aMeta == null || bMeta == null)
+		{
+			return 0;
+		}
+		if (aMeta.priority != bMeta.priority)
+		{
+			return aMeta.priority - bMeta.priority;
+		}
+		else
+		{
+			return a == b ? 0 : a > b ? 1 : -1;
 		}
 	}
 }

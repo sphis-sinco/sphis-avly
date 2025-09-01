@@ -1,0 +1,14 @@
+{
+        "name": "Tester Mod",
+        "version": 1.00,
+
+        "credits": [
+                {
+                        "name": "Sphis",
+                        "url": "https://sphis-sinco.carrd.co",
+                        "role": "Made it"
+                }
+        ],
+
+        "priority": 100
+}
