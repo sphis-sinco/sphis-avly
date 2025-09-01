@@ -14,19 +14,8 @@ class PlayState extends FlxState
 	public static var player_character:String;
 	public static var player_vertical_speed_divider:Float = 10;
 
-	public static var player_moving_up(get, never):Bool;
-
-	static function get_player_moving_up():Bool
-	{
-		return Controls.getControlPressed('game_up');
-	}
-
-	public static var player_moving_down(get, never):Bool;
-
-	static function get_player_moving_down():Bool
-	{
-		return Controls.getControlPressed('game_down');
-	}
+	public static var player_moving_up:Bool;
+	public static var player_moving_down:Bool;
 
 	public static var bulletGroup:FlxTypedGroup<FlxSprite>;
 	public static var bulletSpawnCondition:Dynamic;
@@ -91,6 +80,9 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		player_moving_up = Controls.getControlPressed('game_up');
+		player_moving_down = Controls.getControlPressed('game_down');
 
 		ScriptManager.call('onUpdate', elapsed);
 
