@@ -27,6 +27,7 @@ class PlayState extends FlxState
 	}
 
 	public static var bulletGroup:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
+	public static var bulletSpawnCondition:Dynamic;
 
 	override public function new()
 	{
@@ -49,6 +50,11 @@ class PlayState extends FlxState
 
 		Controls.save = new ControlsSave('game/preferences/controls.json');
 		Controls.save.load(Controls.save.publicPath);
+
+		bulletSpawnCondition = function()
+		{
+			return FlxG.random.bool(FlxG.random.float(0, 25));
+		};
 
 		ScriptManager.call('onCreate');
 	}
