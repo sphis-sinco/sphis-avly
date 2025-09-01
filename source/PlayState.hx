@@ -53,7 +53,7 @@ class PlayState extends FlxState
 
 		bulletSpawnCondition = function()
 		{
-			return FlxG.random.bool(FlxG.random.float(0, 25));
+			return FlxG.random.bool(FlxG.random.float(0, 15));
 		};
 
 		ScriptManager.call('onCreate');
@@ -85,7 +85,7 @@ class PlayState extends FlxState
 
 		for (bullet in bulletGroup.members)
 		{
-			bullet.x -= bullet.width;
+			bullet.x -= (bullet.width / 2);
 
 			if (bullet.x < -(bullet.width * 2))
 			{
@@ -102,8 +102,15 @@ class PlayState extends FlxState
 		var newBullet = new FlxSprite();
 		newBullet.makeGraphic(16, 8, Color.fstr('0xffff00'));
 
-		newBullet.screenCenter(Y);
+		newBullet.y = player.y;
+		newBullet.y += Math.abs(FlxG.random.float(newBullet.width * -10, newBullet.width * 10));
 		newBullet.x = FlxG.width + newBullet.width;
+
+		if (newBullet.y < 0 || newBullet.y > FlxG.height)
+		{
+			spawnBullet(); // take 2
+			return;
+		}
 
 		bulletGroup.add(newBullet);
 	}
