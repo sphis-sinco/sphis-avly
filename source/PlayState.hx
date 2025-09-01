@@ -6,6 +6,7 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
+import sys.FileSystem;
 
 class PlayState extends FlxState
 {
@@ -45,6 +46,11 @@ class PlayState extends FlxState
 
 		player = new FlxSprite();
 		player.loadGraphic('game/img/characters/$player_character.png', true, 48, 48);
+		for (mod in ModManager.MOD_IDS)
+		{
+			if (FileSystem.exists('game/mods/$mod/img/characters/$player_character.png'))
+				player.loadGraphic('game/mods/$mod/img/characters/$player_character.png', true, 48, 48);
+		}
 		player.animation.add('fly', [0, 1], 8);
 		player.animation.play('fly');
 
@@ -117,6 +123,12 @@ class PlayState extends FlxState
 	{
 		var newBullet = new FlxSprite();
 		newBullet.loadGraphic('game/img/bullet.png');
+
+		for (mod in ModManager.MOD_IDS)
+		{
+			if (FileSystem.exists('game/mods/$mod/img/bullet.png'))
+				newBullet.loadGraphic('game/mods/$mod/img/bullet.png');
+		}
 
 		newBullet.y = player.y;
 		newBullet.y += Math.abs(FlxG.random.float(newBullet.width * -10, newBullet.width * 10));
