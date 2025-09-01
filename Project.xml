@@ -39,7 +39,7 @@
 
 	<haxelib name="flixel" />
 
-	<haxelib name="hscript-iris" />
+	<haxelib name="rulescript" />
 	<define name="hscriptPos" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->

@@ -1,7 +1,5 @@
 package;
 
-import crowplexus.iris.Iris;
-import crowplexus.iris.IrisConfig;
 import lime.app.Application;
 import sys.FileSystem;
 import sys.io.File;
@@ -11,7 +9,7 @@ class ScriptManager
 	public static var SCRIPT_FOLDER:String = 'scripts';
 	public static var SCRIPT_EXT:String = 'hxc';
 
-	public static var SCRIPTS:Array<Iris> = [];
+	public static var SCRIPTS:Array<Dynamic> = [];
 
 	public static function loadAllScripts()
 	{
@@ -27,14 +25,14 @@ class ScriptManager
 
 	public static function loadScriptByPath(path:String)
 	{
-		var newScript:Iris;
+		var newScript:Dynamic;
 
 		if (!StringTools.endsWith(path, '.${SCRIPT_EXT}'))
 			return;
 
 		try
 		{
-			newScript = new Iris(File.getContent(path), new IrisConfig(path, true, true, []));
+			newScript = null; // new Dynamic(File.getContent(path), new IrisConfig(path, true, true, []));
 		}
 		catch (e)
 		{
