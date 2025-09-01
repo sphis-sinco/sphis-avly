@@ -1,6 +1,7 @@
 package;
 
 import haxe.Json;
+import lime.utils.Assets;
 import sys.FileSystem;
 
 class ModManager
@@ -23,11 +24,12 @@ class ModManager
 			var meta:ModMeta;
 			try
 			{
-				meta = Json.parse('game/$MODS_FOLDER/$entry/$MOD_METADATA_FILE');
+				meta = Json.parse(Assets.getText('game/$MODS_FOLDER/$entry/$MOD_METADATA_FILE'));
 			}
 			catch (e)
 			{
 				meta = null;
+				trace('$entry meta error: ${e.message}');
 			}
 
 			if (meta != null)

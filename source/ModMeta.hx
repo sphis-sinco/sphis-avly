@@ -1,12 +1,12 @@
 typedef ModMeta =
 {
 	var name:String;
-	var version:String;
+	var version:Dynamic;
 
 	var credits:Array<
 		{
 			var name:String;
-			var url:Any;
+			var ?url:String;
 			var role:String;
 		}>;
 
