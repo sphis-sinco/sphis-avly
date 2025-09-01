@@ -144,11 +144,8 @@ class ScriptManager
 		return sys;
 		#elseif html5
 		var genScriptPath = function(filepath:String) return Paths.getGamePath('$script_folder/$filepath');
-		return [
-			genScriptPath('BulletMove.hx'),
-			genScriptPath('BulletSpawnCondition.hx'),
-			genScriptPath('SwitchCharacters.hx')
-		];
+
+		return [];
 		#else
 		return [];
 		#end
