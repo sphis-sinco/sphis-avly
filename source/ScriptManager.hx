@@ -120,6 +120,8 @@ class ScriptManager
 		script.set('Color', Color);
 
 		script.set('Controls', Controls);
+
+		script.set('Script', Script);
 	}
 
 	public static function loadScriptsByPaths(paths:Array<String>)
