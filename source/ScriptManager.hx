@@ -30,7 +30,7 @@ class ScriptManager
 		@:privateAccess {
 			if (!script.interp.variables.exists(method))
 			{
-				final errMsg = 'script(${script.config.name}) missing method: $method';
+				final errMsg = 'missing method($method) for script(${script.config.name})';
 
 				if (!SCRIPTS_ERRS.exists('missing_method($method)_${script.config.name}'))
 				{
@@ -51,7 +51,7 @@ class ScriptManager
 			}
 			catch (e)
 			{
-				final errMsg = 'error calling script(${script.config.name}) method: ' + e;
+				final errMsg = 'error calling method($method) for script(${script.config.name}): ' + e.message;
 
 				if (!SCRIPTS_ERRS.exists('method($method)_error_${script.config.name}'))
 				{
