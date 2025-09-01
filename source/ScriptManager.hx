@@ -152,6 +152,13 @@ class ScriptManager
 				}
 		}
 		return sys;
+		#elseif html5
+		var genScriptPath = function(filepath:String) = return 'game/$script_folder/$filepath';
+		return [
+			genScriptPath('BulletMove.hx'),
+			genScriptPath('BulletSpawnCondition.hx'),
+			genScriptPath('SwitchCharacters.hx')
+		];
 		#else
 		return [];
 		#end
