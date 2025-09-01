@@ -28,6 +28,7 @@ class CharacterSelect extends FlxState
 		instructionText.fieldWidth = FlxG.width;
 		instructionText.text = 'Pick a partner from the couple';
 		instructionText.alignment = 'center';
+		instructionText.size = 32;
 		add(instructionText);
 
 		ScriptManager.call('onCreate');
