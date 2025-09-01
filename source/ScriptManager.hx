@@ -19,7 +19,20 @@ class ScriptManager
 	{
 		for (script in SCRIPTS)
 		{
-			script.call(method, args);
+			@:privateAccess {
+				var ny:Dynamic = script.interp.variables.get(method);
+				try
+				{
+					if (ny != null && Reflect.isFunction(ny))
+					{
+						script.call(method, args);
+					}
+				}
+				catch (e)
+				{
+					trace('error calling script(${script.config.name}) method: ' + e);
+				}
+			}
 		}
 	}
 
@@ -61,10 +74,34 @@ class ScriptManager
 
 		if (newScript != null)
 		{
+			initalizeScriptVariables(newScript);
+
 			trace('[SCRIPTMANAGER] Loaded script($path)');
+
 			SCRIPTS.push(newScript);
 			newScript.call('onAdded');
 		}
+	}
+
+	public static function initalizeScriptVariables(script:Iris)
+	{
+		script.set('ScriptsManager', ScriptManager, false);
+
+		script.set('FlxG', FlxG, false);
+		script.set('FlxSprite', flixel.FlxSprite, false);
+		script.set('FlxBasic', flixel.FlxBasic, false);
+		script.set('FlxState', flixel.FlxState, false);
+
+		script.set('FlxGroup', flixel.group.FlxGroup, false);
+		script.set('FlxTypedGroup', flixel.group.FlxGroup.FlxTypedGroup, false);
+
+		script.set('FlxMath', flixel.math.FlxMath, false);
+
+		script.set('debug', #if debug true #else false #end, true);
+		script.set('colorFromString', function(string:String)
+		{
+			return flixel.util.FlxColor.fromString(string);
+		}, false);
 	}
 
 	public static function loadScriptsByPaths(paths:Array<String>)
