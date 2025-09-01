@@ -28,6 +28,7 @@ class PlayState extends FlxState
 
 	public static var bulletGroup:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 	public static var bulletSpawnCondition:Dynamic;
+	public static var bulletMove:Dynamic;
 
 	override public function new()
 	{
@@ -54,6 +55,17 @@ class PlayState extends FlxState
 		bulletSpawnCondition = function()
 		{
 			return FlxG.random.bool(FlxG.random.float(0, 15));
+		};
+
+		bulletMove = function(bullet:FlxSprite)
+		{
+			bullet.x -= (bullet.width / 2);
+
+			if (bullet.x < -(bullet.width * 2))
+			{
+				bullet.destroy();
+				bulletGroup.members.remove(bullet);
+			}
 		};
 
 		ScriptManager.call('onCreate');
@@ -85,13 +97,7 @@ class PlayState extends FlxState
 
 		for (bullet in bulletGroup.members)
 		{
-			bullet.x -= (bullet.width / 2);
-
-			if (bullet.x < -(bullet.width * 2))
-			{
-				bullet.destroy();
-				bulletGroup.members.remove(bullet);
-			}
+			bulletMove(bullet);
 		}
 
 		FlxG.watch.addQuick('PVSD', player_vertical_speed_divider);
@@ -111,6 +117,8 @@ class PlayState extends FlxState
 			spawnBullet(); // take 2
 			return;
 		}
+
+		ScriptManager.call('onSpawnBullet', newBullet); // u can do sum shit with it here
 
 		bulletGroup.add(newBullet);
 	}
