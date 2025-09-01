@@ -41,7 +41,7 @@ class PlayState extends FlxState
 		super.create();
 
 		player = new FlxSprite();
-		player.makeGraphic(48, 48, Color.fstr('0xff0000'));
+		player.makeGraphic(48, 48, (player_character == Characters.HARD_DIFF) ? Color.fstr('0xff0000') : Color.fstr('0x00ff00'));
 
 		player.screenCenter(Y);
 		player.x = player.width * 1.5;
