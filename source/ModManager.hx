@@ -25,35 +25,38 @@ class ModManager
 
 		for (entry in FileSystem.readDirectory(Paths.getGamePath('$MODS_FOLDER/')))
 		{
-			var meta:ModMeta;
-			var disable:String = '';
-			try
+			if (FileSystem.isDirectory(entry))
 			{
-				meta = Json.parse(Assets.getText(Paths.getGamePath('$MODS_FOLDER/$entry/$MOD_METADATA_FILE')));
-			}
-			catch (e)
-			{
-				meta = null;
-				trace('$entry meta error: ${e.message}');
-			}
-
-			if (meta != null)
-			{
+				var meta:ModMeta;
+				var disable:String = '';
 				try
 				{
-					disable = Assets.getText(Paths.getGamePath('$MODS_FOLDER/$entry/$MOD_DISABLE_FILE'));
+					meta = Json.parse(Assets.getText(Paths.getGamePath('$MODS_FOLDER/$entry/$MOD_METADATA_FILE')));
 				}
 				catch (e)
 				{
-					disable = null;
-					trace('$entry disable file error: ${e.message}');
+					meta = null;
+					trace('$entry meta error: ${e.message}');
 				}
-			}
 
-			if (meta != null && (disable == null || disable == ''))
-			{
-				MOD_IDS.push(entry);
-				MOD_METAS.set(entry, meta);
+				if (meta != null)
+				{
+					try
+					{
+						disable = Assets.getText(Paths.getGamePath('$MODS_FOLDER/$entry/$MOD_DISABLE_FILE'));
+					}
+					catch (e)
+					{
+						disable = null;
+						trace('$entry disable file error: ${e.message}');
+					}
+				}
+
+				if (meta != null && (disable == null || disable == ''))
+				{
+					MOD_IDS.push(entry);
+					MOD_METAS.set(entry, meta);
+				}
 			}
 		}
 		#end
