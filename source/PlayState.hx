@@ -27,7 +27,7 @@ class PlayState extends FlxState
 		return Controls.getControlPressed('game_down');
 	}
 
-	public static var bulletGroup:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
+	public static var bulletGroup:FlxTypedGroup<FlxSprite>;
 	public static var bulletSpawnCondition:Dynamic;
 	public static var bulletMove:Dynamic;
 
@@ -48,6 +48,7 @@ class PlayState extends FlxState
 
 		add(player);
 
+		bulletGroup = new FlxTypedGroup<FlxSprite>();
 		add(bulletGroup);
 
 		Controls.save = new ControlsSave('game/preferences/controls.json');
