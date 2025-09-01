@@ -1,21 +1,25 @@
 package;
 
 import lime.app.Application;
+import rulescript.RuleScript;
+import rulescript.RuleScriptInterp;
+import rulescript.parsers.HxParser;
 import sys.FileSystem;
 import sys.io.File;
 
 class ScriptManager
 {
 	public static var SCRIPT_FOLDER:String = 'scripts';
-	public static var SCRIPT_EXT:String = 'hxc';
 
-	public static var SCRIPTS:Array<Dynamic> = [];
+	public static var CUSTOM_SCRIPT_EXT:String = 'hxc';
+	public static var DEFAULT_SCRIPT_EXT:String = 'hx';
+
+	public static var SCRIPTS:Array<RuleScript> = [];
 
 	public static function loadAllScripts()
 	{
 		for (script in SCRIPTS)
 		{
-			script.destroy();
 			SCRIPTS.remove(script);
 		}
 		SCRIPTS = [];
@@ -25,14 +29,11 @@ class ScriptManager
 
 	public static function loadScriptByPath(path:String)
 	{
-		var newScript:Dynamic;
-
-		if (!StringTools.endsWith(path, '.${SCRIPT_EXT}'))
-			return;
+		var newScript:RuleScript;
 
 		try
 		{
-			newScript = null; // new Dynamic(File.getContent(path), new IrisConfig(path, true, true, []));
+			newScript = getScript(path.split('.')[0]);
 		}
 		catch (e)
 		{
@@ -45,8 +46,20 @@ class ScriptManager
 		{
 			trace('[SCRIPTMANAGER] Loaded script($path)');
 			SCRIPTS.push(newScript);
-			newScript.call('onAdded');
 		}
+	}
+
+	public static function getScript(key:String):RuleScript
+	{
+		var scriptExists = FileSystem.exists('$key.$CUSTOM_SCRIPT_EXT');
+		var path:String = scriptExists ? '$key.$CUSTOM_SCRIPT_EXT' : '$key.$DEFAULT_SCRIPT_EXT';
+		var script:RuleScript;
+		script = new RuleScript(new RuleScriptInterp(), new HxParser());
+		script.getParser(HxParser).setParams(null, null, true, null);
+		if (scriptExists)
+			script.getParser(HxParser).mode = MODULE;
+		script.execute(File.getContent(path));
+		return script;
 	}
 
 	public static function loadScriptsByPaths(paths:Array<String>)
