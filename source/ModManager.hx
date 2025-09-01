@@ -63,13 +63,14 @@ class ModManager
 		{
 			return 0;
 		}
-		if (aMeta.priority != bMeta.priority)
-		{
-			return aMeta.priority - bMeta.priority;
-		}
-		else
-		{
-			return a == b ? 0 : a > b ? 1 : -1;
-		}
+		/*
+			if (aMeta.priority != bMeta.priority)
+			{
+				return aMeta.priority - bMeta.priority;
+			}
+			else
+			{ */
+		return a == b ? 0 : a > b ? 1 : -1;
+		// }
 	}
 }
