@@ -19,12 +19,14 @@ class CharacterSelect extends FlxState
 		reos.loadGraphic(Paths.getGamePath('img/character-select/chars/reos-idle.png'));
 		reos.screenCenter();
 		reos.x -= reos.width / 2;
+		reos.antialiasing = true;
 		add(reos);
 
 		habo = new FlxSprite();
 		habo.loadGraphic(Paths.getGamePath('img/character-select/chars/habo-idle.png'));
 		habo.screenCenter();
 		habo.x += habo.width / 2;
+		habo.antialiasing = true;
 		add(habo);
 
 		ScriptManager.call('onCreate', false);
