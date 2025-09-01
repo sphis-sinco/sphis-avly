@@ -50,7 +50,7 @@ class ControlsSave
 	public function save(path:Null<String> = null)
 	{
 		#if sys
-		trace('[CONTROLS SAVE] Saving controls to "$path" preference file via Sys');
+		trace('Saving controls to "$path" preference file via Sys');
 
 		var game_up:Array<String> = [];
 		var game_down:Array<String> = [];
@@ -93,18 +93,18 @@ class ControlsSave
 		};
 
 		if (path == null)
-			trace('[CONTROLS SAVE] PATH NULL! CANNOT SAVE!!');
+			trace('PATH NULL! CANNOT SAVE!!');
 		if (path == null)
 			return;
 		sys.io.File.saveContent((path != null) ? path : '', Json.stringify(saveFile));
 		#else
-		trace('[CONTROLS SAVE] Not sys, cannot save.');
+		trace('Not sys, cannot save.');
 		#end
 	}
 
 	public function load(path:Null<String> = null)
 	{
-		trace('[CONTROLS SAVE] Loading "$path" controls preference file');
+		trace('Loading "$path" controls preference file');
 
 		var saveFile:ControlsPreferenceFile;
 
@@ -115,7 +115,7 @@ class ControlsSave
 		catch (e)
 		{
 			saveFile = null;
-			trace('[CONTROLS SAVE] LOADING ERROR: "${e.message}"');
+			trace('LOADING ERROR: "${e.message}"');
 		}
 
 		if (saveFile != null)
