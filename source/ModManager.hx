@@ -2,7 +2,9 @@ package;
 
 import haxe.Json;
 import lime.utils.Assets;
+#if sys
 import sys.FileSystem;
+#end
 
 class ModManager
 {

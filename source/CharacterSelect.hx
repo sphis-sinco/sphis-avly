@@ -2,7 +2,9 @@ package;
 
 import flixel.FlxSprite;
 import flixel.FlxState;
+#if sys
 import sys.FileSystem;
+#end
 
 class CharacterSelect extends FlxState
 {
@@ -23,7 +25,7 @@ class CharacterSelect extends FlxState
 			#end
 		}
 		reos.screenCenter();
-		reos.x -= reos.width;
+		reos.x -= reos.width / 2;
 		add(reos);
 
 		habo = new FlxSprite();
@@ -36,7 +38,7 @@ class CharacterSelect extends FlxState
 			#end
 		}
 		habo.screenCenter();
-		habo.x -= habo.width;
+		habo.x += habo.width / 2;
 		add(habo);
 
 		ScriptManager.call('onCreate', false);

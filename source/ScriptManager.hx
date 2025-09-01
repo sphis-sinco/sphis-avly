@@ -3,6 +3,7 @@ package;
 import crowplexus.iris.Iris;
 import crowplexus.iris.IrisConfig;
 import lime.app.Application;
+import openfl.Assets;
 #if sys
 import sys.FileSystem;
 import sys.io.File;
@@ -91,7 +92,7 @@ class ScriptManager
 
 		try
 		{
-			newScript = new Iris(File.getContent(path), new IrisConfig(path, true, true, []));
+			newScript = new Iris(#if sys File.getContent(path) #else Assets.getText(path) #end, new IrisConfig(path, true, true, []));
 		}
 		catch (e)
 		{
@@ -153,7 +154,7 @@ class ScriptManager
 		}
 		return sys;
 		#elseif html5
-		var genScriptPath = function(filepath:String) = return 'game/$script_folder/$filepath';
+		var genScriptPath = function(filepath:String) return 'game/$script_folder/$filepath';
 		return [
 			genScriptPath('BulletMove.hx'),
 			genScriptPath('BulletSpawnCondition.hx'),
