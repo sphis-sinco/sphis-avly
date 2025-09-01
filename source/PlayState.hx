@@ -6,6 +6,8 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
+import flixel.text.FlxText;
+import flixel.util.FlxTimer;
 
 class PlayState extends FlxState
 {
@@ -23,6 +25,10 @@ class PlayState extends FlxState
 	public static var bulletSpawnCondition:Dynamic;
 	public static var bulletMove:Dynamic;
 
+	public static var time:Int = -1;
+	public static var timerText:FlxText;
+	public static var increaseTime:Dynamic;
+
 	override public function new()
 	{
 		super();
@@ -31,6 +37,14 @@ class PlayState extends FlxState
 	override public function create()
 	{
 		super.create();
+
+		time = 0;
+
+		timerText = new FlxText();
+		timerText.color = 0xFFFFFF;
+		timerText.size = 16;
+		timerText.alpha = 0.5;
+		add(timerText);
 
 		if (player_character == null)
 			player_character = Characters.NORMAL_DIFF;
@@ -70,6 +84,20 @@ class PlayState extends FlxState
 		};
 
 		ScriptManager.call('onCreate');
+
+		increaseTime = function()
+		{
+			time++;
+			timerText.text = Std.string(time);
+			timerText.screenCenter();
+
+			new FlxTimer().start(1, timer ->
+			{
+				increaseTime();
+			});
+		};
+
+		increaseTime();
 	}
 
 	override public function update(elapsed:Float)
@@ -79,10 +107,9 @@ class PlayState extends FlxState
 		player_moving_up = Controls.getControlPressed('game_up');
 		player_moving_down = Controls.getControlPressed('game_down');
 
-		ScriptManager.call('onUpdate', elapsed);
-
 		if (player_moving_up && player.y > player.height)
 			player.y -= player.width / player_vertical_speed_divider;
+
 		if (player_moving_down && player.y < FlxG.height - (player.height * 2))
 			player.y += player.width / player_vertical_speed_divider;
 
@@ -106,6 +133,8 @@ class PlayState extends FlxState
 		}
 
 		FlxG.watch.addQuick('PVSD', player_vertical_speed_divider);
+
+		ScriptManager.call('onUpdate', elapsed);
 	}
 
 	public static function spawnBullet()
