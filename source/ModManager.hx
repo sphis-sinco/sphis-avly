@@ -7,6 +7,7 @@ import sys.FileSystem;
 class ModManager
 {
 	public static var MOD_IDS:Array<String> = [];
+	public static var MOD_METAS:Map<String, ModMeta> = [];
 	public static var MOD_METADATA_FILE:String = 'meta.json';
 
 	public static var MODS_FOLDER:String = 'mods';
@@ -33,7 +34,10 @@ class ModManager
 			}
 
 			if (meta != null)
+			{
 				MOD_IDS.push(entry);
+				MOD_METAS.set(entry, meta);
+			}
 		}
 		#end
 
@@ -41,7 +45,10 @@ class ModManager
 		if (MOD_IDS.length > 0)
 		{
 			for (id in MOD_IDS)
-				trace(' * $id');
+			{
+				final meta = MOD_METAS.get(id);
+				trace(' * ${meta.name}($id) v${meta.version}');
+			}
 		}
 	}
 }
