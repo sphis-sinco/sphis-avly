@@ -1,8 +1,6 @@
 package;
 
 import Controls.ControlsSave;
-import events.SpawnBulletEvent;
-import events.UpdateEvent;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -86,10 +84,7 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);
 
-		var updateEvent:UpdateEvent = {
-			elapsed: elapsed
-		};
-		ScriptManager.call('onUpdate', updateEvent);
+		ScriptManager.call('onUpdate', elapsed);
 
 		if (player_moving_up && player.y > player.height)
 			player.y -= player.width / player_vertical_speed_divider;
@@ -133,10 +128,7 @@ class PlayState extends FlxState
 			return;
 		}
 
-		var spawnBulletEvent:SpawnBulletEvent = {
-			newBullet: newBullet
-		};
-		ScriptManager.call('onSpawnBullet', spawnBulletEvent); // u can do sum shit with it here
+		ScriptManager.call('onSpawnBullet', newBullet); // u can do sum shit with it here
 
 		bulletGroup.add(newBullet);
 	}

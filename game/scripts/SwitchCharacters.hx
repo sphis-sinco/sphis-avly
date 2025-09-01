@@ -1,7 +1,6 @@
-import events.UpdateEvent;
 import flixel.FlxG;
 
-function onUpdate(event:UpdateEvent)
+function onUpdate(elapsed:Float)
 {
 	if (FlxG.keys.justReleased.R && Script.isDebug())
 	{
