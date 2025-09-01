@@ -14,23 +14,48 @@ class ScriptManager
 	public static var SCRIPT_EXTS:Array<String> = ['hxc', 'hx', 'haxe', 'hscript'];
 
 	public static var SCRIPTS:Array<Iris> = [];
+	public static var SCRIPTS_ERRS:Map<String, Dynamic> = [];
 
 	public static function call(method:String, ...args:Dynamic)
 	{
 		for (script in SCRIPTS)
 		{
-			@:privateAccess {
-				var ny:Dynamic = script.interp.variables.get(method);
-				try
+			callSingular(script, method, args);
+		}
+	}
+
+	public static function callSingular(script:Iris, method:String, ...args:Dynamic)
+	{
+		@:privateAccess {
+			if (!script.interp.variables.exists(method))
+			{
+				final errMsg = 'script(${script.config.name}) missing method: $method';
+
+				if (!SCRIPTS_ERRS.exists('missing_method($method)_${script.config.name}'))
 				{
-					if (ny != null && Reflect.isFunction(ny))
-					{
-						script.call(method, args);
-					}
+					SCRIPTS_ERRS.set('missing_method($method)_${script.config.name}', errMsg);
+					trace(errMsg);
 				}
-				catch (e)
+
+				return;
+			}
+
+			var ny:Dynamic = script.interp.variables.get(method);
+			try
+			{
+				if (ny != null && Reflect.isFunction(ny))
 				{
-					trace('error calling script(${script.config.name}) method: ' + e);
+					script.call(method, args);
+				}
+			}
+			catch (e)
+			{
+				final errMsg = 'error calling script(${script.config.name}) method: ' + e;
+
+				if (!SCRIPTS_ERRS.exists('method($method)_error_${script.config.name}'))
+				{
+					SCRIPTS_ERRS.set('method($method)_error_${script.config.name}', errMsg);
+					trace(errMsg);
 				}
 			}
 		}
@@ -79,23 +104,13 @@ class ScriptManager
 			trace('[SCRIPTMANAGER] Loaded script($path)');
 
 			SCRIPTS.push(newScript);
-			newScript.call('onAdded');
+			callSingular(newScript, 'onAdded');
 		}
 	}
 
 	public static function initalizeScriptVariables(script:Iris)
 	{
 		script.set('ScriptsManager', ScriptManager, false);
-
-		script.set('FlxG', FlxG, false);
-		script.set('FlxSprite', flixel.FlxSprite, false);
-		script.set('FlxBasic', flixel.FlxBasic, false);
-		script.set('FlxState', flixel.FlxState, false);
-
-		script.set('FlxGroup', flixel.group.FlxGroup, false);
-		script.set('FlxTypedGroup', flixel.group.FlxGroup.FlxTypedGroup, false);
-
-		script.set('FlxMath', flixel.math.FlxMath, false);
 
 		script.set('PlayState', PlayState);
 		script.set('Game', PlayState);
