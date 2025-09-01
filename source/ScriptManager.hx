@@ -112,8 +112,15 @@ class ScriptManager
 	{
 		script.set('ScriptsManager', ScriptManager, false);
 
+		script.set('Characters.NORMAL_DIFF', Characters.NORMAL_DIFF);
+		script.set('Characters.HARD_DIFF', Characters.HARD_DIFF);
+
 		script.set('PlayState', PlayState);
 		script.set('Game', PlayState);
+
+		script.set('Color', Color);
+
+		script.set('Controls', Controls);
 
 		script.set('debug', #if debug true #else false #end, true);
 		script.set('colorFromString', function(string:String)
