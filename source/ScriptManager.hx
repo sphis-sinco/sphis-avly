@@ -135,7 +135,7 @@ class ScriptManager
 	{
 		#if sys
 		var sys = [];
-		for (file in FileSystem.readDirectory('$script_folder'))
+		for (file in FileSystem.readDirectory('$script_folder/'))
 		{
 			sys.push('$script_folder/$file');
 		}
