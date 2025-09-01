@@ -25,5 +25,10 @@ class ModManager
 		#end
 
 		trace('${MOD_IDS.length} valid mods loaded');
+		if (MOD_IDS.length > 0)
+		{
+			for (id in MOD_IDS)
+				trace(' * $id');
+		}
 	}
 }
