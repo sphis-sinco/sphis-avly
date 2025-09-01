@@ -1,0 +1,14 @@
+{
+        "name": "Template",
+        "version": 1.00,
+
+        "credits": [
+                {
+                        "name": "Sphis",
+                        "url": "https://sphis-sinco.carrd.co",
+                        "role": "Made the template"
+                }
+        ],
+
+        "priority": 0
+}
