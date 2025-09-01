@@ -103,7 +103,7 @@ class ScriptManager
 		script.set('debug', #if debug true #else false #end, true);
 		script.set('colorFromString', function(string:String)
 		{
-			return flixel.util.FlxColor.fromString(string);
+			return Color.fstr(string);
 		}, false);
 	}
 
