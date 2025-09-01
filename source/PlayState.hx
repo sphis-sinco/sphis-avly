@@ -40,6 +40,9 @@ class PlayState extends FlxState
 	{
 		super.create();
 
+		if (player_character == null)
+			player_character = Characters.NORMAL_DIFF;
+
 		player = new FlxSprite();
 		player.makeGraphic(48, 48, (player_character == Characters.HARD_DIFF) ? Color.fstr('0xff0000') : Color.fstr('0x00ff00'));
 
@@ -71,9 +74,6 @@ class PlayState extends FlxState
 		};
 
 		ScriptManager.call('onCreate');
-
-		if (player_character == null)
-			player_character = Characters.NORMAL_DIFF;
 	}
 
 	override public function update(elapsed:Float)
