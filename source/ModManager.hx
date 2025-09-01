@@ -49,7 +49,7 @@ class ModManager
 			for (id in MOD_IDS)
 			{
 				final meta = MOD_METAS.get(id);
-				trace(' * ${meta.name}($id) v${meta.version}');
+				trace(' * ${meta.name}($id) v${meta.version} (Priority: ${meta.priority})');
 			}
 		}
 	}
