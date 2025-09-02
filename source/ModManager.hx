@@ -25,7 +25,7 @@ class ModManager
 
 		for (entry in FileSystem.readDirectory(Paths.getGamePath('$MODS_FOLDER/')))
 		{
-			if (FileSystem.isDirectory(entry))
+			if (FileSystem.isDirectory(Paths.getGamePath('$MODS_FOLDER/$entry')))
 			{
 				var meta:ModMeta;
 				var disable:String = '';
