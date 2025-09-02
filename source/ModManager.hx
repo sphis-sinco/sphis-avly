@@ -4,6 +4,7 @@ import haxe.Json;
 import lime.utils.Assets;
 #if sys
 import sys.FileSystem;
+import sys.io.File;
 #end
 
 class ModManager
@@ -31,7 +32,7 @@ class ModManager
 				var disable:String = '';
 				try
 				{
-					meta = Json.parse(Assets.getText(Paths.getGamePath('$MODS_FOLDER/$entry/$MOD_METADATA_FILE')));
+					meta = Json.parse(File.getContent(Paths.getGamePath('$MODS_FOLDER/$entry/$MOD_METADATA_FILE')));
 				}
 				catch (e)
 				{
@@ -43,7 +44,7 @@ class ModManager
 				{
 					try
 					{
-						disable = Assets.getText(Paths.getGamePath('$MODS_FOLDER/$entry/$MOD_DISABLE_FILE'));
+						disable = File.getContent(Paths.getGamePath('$MODS_FOLDER/$entry/$MOD_DISABLE_FILE'));
 					}
 					catch (e)
 					{

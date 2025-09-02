@@ -1,0 +1,14 @@
+{
+        "name": "Ex Character",
+        "version": 1.00,
+
+        "credits": [
+                {
+                        "name": "Sphis",
+                        "url": "https://sphis-sinco.carrd.co",
+                        "role": "Made the Mod"
+                }
+        ],
+
+        "priority": 0
+}

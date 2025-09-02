@@ -1,0 +1,7 @@
+function onCreate() {
+        if (Script.state == 'CharacterSelect')
+        {
+                CharacterSelect.reos.scale.set(0.5, 0.5);
+                CharacterSelect.habo.scale.set(0.5, 0.5);
+        }
+}
