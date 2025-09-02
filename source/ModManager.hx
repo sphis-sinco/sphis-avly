@@ -21,12 +21,12 @@ class ModManager
 		MOD_IDS = [];
 
 		#if sys
-		if (!FileSystem.exists(Paths.getGamePath('$MODS_FOLDER/')))
-			FileSystem.createDirectory(Paths.getGamePath('$MODS_FOLDER'));
+		if (!FileSystem.exists('game/$MODS_FOLDER/'))
+			FileSystem.createDirectory('game/$MODS_FOLDER');
 
-		for (entry in FileSystem.readDirectory(Paths.getGamePath('$MODS_FOLDER/')))
+		for (entry in FileSystem.readDirectory('game/$MODS_FOLDER/'))
 		{
-			if (FileSystem.isDirectory(Paths.getGamePath('$MODS_FOLDER/$entry')))
+			if (FileSystem.isDirectory('game/$MODS_FOLDER/$entry'))
 			{
 				var meta:ModMeta;
 				var disable:String = '';

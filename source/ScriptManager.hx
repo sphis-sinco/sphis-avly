@@ -114,8 +114,6 @@ class ScriptManager
 
 	public static function initalizeScriptVariables(script:Iris)
 	{
-		script.set('Type', Type, false);
-
 		script.set('ScriptManager', ScriptManager, false);
 		script.set('Characters', {NORMAL_DIFF: Characters.NORMAL_DIFF, HARD_DIFF: Characters.HARD_DIFF});
 		script.set('PlayState', PlayState, false);
@@ -123,6 +121,7 @@ class ScriptManager
 		script.set('Color', Color, false);
 		script.set('Controls', Controls, false);
 		script.set('Script', Script, false);
+		script.set('Paths', Paths, false);
 	}
 
 	public static function loadScriptsByPaths(paths:Array<String>)
@@ -135,12 +134,33 @@ class ScriptManager
 	{
 		#if sys
 		var sys = [];
-		for (file in FileSystem.readDirectory('game/$script_folder/'))
-		{
-			sys.push('game/$script_folder/$file');
-			if (!sys.contains(Paths.getGamePath('$script_folder/$file')))
-				sys.push(Paths.getGamePath('$script_folder/$file'));
-		}
+		var path = '';
+		trace(Paths.getGamePath('$script_folder/'));
+		trace(FileSystem.exists(Paths.getGamePath('$script_folder/')));
+		if (FileSystem.exists('game/$script_folder/'))
+			for (file in FileSystem.readDirectory('game/$script_folder/'))
+			{
+				path = Paths.getGamePath('$script_folder/$file');
+				if (!sys.contains(path))
+				{
+					if (FileSystem.isDirectory('$path'))
+						getAllScriptPaths('$path');
+					else
+						sys.push('$path');
+				}
+			}
+		if (FileSystem.exists(Paths.getGamePath('$script_folder/')))
+			for (file in FileSystem.readDirectory(Paths.getGamePath('$script_folder/')))
+			{
+				path = Paths.getGamePath('$script_folder/$file');
+				if (!sys.contains(path))
+				{
+					if (FileSystem.isDirectory('$path'))
+						getAllScriptPaths('$path');
+					else
+						sys.push('$path');
+				}
+			}
 		return sys;
 		#elseif html5
 		var genScriptPath = function(filepath:String) return Paths.getGamePath('$script_folder/$filepath');
